@@ -5,4 +5,4 @@ For support, contact sytex.comp@gmail.com
 
 [Privacy Policy](./privacy-policy.html)
 
-[Terms of Service](./TERMS.md)
+[Terms of Service](./terms-conditions.html)
