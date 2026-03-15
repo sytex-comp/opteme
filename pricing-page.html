@@ -6,6 +6,7 @@
 <title>Opteme Pricing</title>
 
 <style>
+
 body{
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background:#0f1117;
@@ -16,62 +17,69 @@ body{
 }
 
 h1{
-  margin-bottom:10px;
-}
-
-.subtitle{
-  color:#9aa4b2;
   margin-bottom:40px;
 }
 
 .pricing{
   display:flex;
   justify-content:center;
-  gap:30px;
+  gap:40px;
   flex-wrap:wrap;
 }
 
 .card{
   background:#151922;
-  border-radius:14px;
-  padding:30px;
-  width:300px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  border-radius:16px;
+  padding:35px;
+  width:320px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.35);
+
+  display:grid;
+  grid-template-rows:
+    40px   /* badge */
+    40px   /* title */
+    80px   /* price */
+    40px   /* old price */
+    1fr;   /* benefits */
 }
 
-.card h2{
-  margin-top:0;
+.badge{
+  font-size:12px;
+  background:#1f6feb;
+  padding:6px 12px;
+  border-radius:20px;
+  display:inline-block;
+  align-self:center;
+  justify-self:center;
+}
+
+.title{
+  font-size:26px;
+  font-weight:bold;
+  align-self:center;
 }
 
 .price{
-  font-size:36px;
+  font-size:40px;
   font-weight:bold;
-  margin:20px 0;
+  align-self:center;
 }
 
-.old-price{
+.oldprice{
   text-decoration:line-through;
-  color:#888;
-  font-size:16px;
+  color:#8b949e;
+  align-self:center;
 }
 
 ul{
   list-style:none;
   padding:0;
+  margin-top:10px;
 }
 
 ul li{
-  padding:8px 0;
+  padding:10px 0;
   border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.tag{
-  background:#1f6feb;
-  padding:6px 10px;
-  border-radius:20px;
-  font-size:12px;
-  display:inline-block;
-  margin-bottom:10px;
 }
 
 .footer{
@@ -91,23 +99,25 @@ a{
 a:hover{
   text-decoration:underline;
 }
-</style>
 
+</style>
 </head>
 
 <body>
 
 <h1>Opteme Pricing</h1>
-<p class="subtitle">Choose the plan that fits your needs</p>
 
 <div class="pricing">
 
 <div class="card">
-<div class="tag">Most Popular</div>
-<h2>Plus</h2>
+
+<div class="badge">Most Popular</div>
+
+<div class="title">Plus</div>
 
 <div class="price">7.99 € / month</div>
-<div class="old-price">14.99 €</div>
+
+<div class="oldprice">14.99 €</div>
 
 <ul>
 <li>100 credits / month</li>
@@ -119,11 +129,15 @@ a:hover{
 
 </div>
 
-
 <div class="card">
-<h2>Pro</h2>
+
+<div></div>
+
+<div class="title">Pro</div>
 
 <div class="price">29.99 € / month</div>
+
+<div></div>
 
 <ul>
 <li>Unlimited credits</li>
@@ -141,7 +155,7 @@ a:hover{
 <div class="footer">
 
 <p>
-Purchases are completed inside the Opteme mobile application.
+Purchases are completed inside the Opteme mobile application.  
 Payments are securely processed by Paddle.
 </p>
 
