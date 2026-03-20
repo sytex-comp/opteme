@@ -1,42 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width'>
-  <title>Refund Policy</title>
-  <style> body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding:1em; line-height: 1.6; } </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Policy - Opteme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --text-primary: #f5f5f7;
+            --text-secondary: #8e8e93;
+            --accent-blue: #3b82f6;
+            --accent-blue-hover: #60a5fa;
+            --border-color: #1c1c1e;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 2.5rem 0 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.25rem;
+            list-style-type: none;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "→";
+            position: absolute;
+            left: -1.5rem;
+            color: var(--accent-blue);
+        }
+
+        a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-blue-hover);
+            text-decoration: underline;
+        }
+
+        .footer-note {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 2rem 1.5rem;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <strong>Refund Policy</strong>
-  <p>
-    Payments for subscriptions or purchases made through the Application are processed by our Merchant of Record, <strong>Paddle</strong>. By completing a purchase, you agree to Paddle’s terms and conditions.
-  </p>
+    <main class="container">
+        <h1>Refund Policy</h1>
+        
+        <p>Payments for subscriptions or purchases made through the Application are processed by our Merchant of Record, <strong>Paddle</strong>. By completing a purchase, you agree to Paddle’s terms and conditions.</p>
 
-  <p>
-    We want you to be satisfied with your purchase. If you encounter technical issues that prevent the Application from functioning as intended, or if you change your mind, we offer a <strong>14-day refund period</strong>.
-  </p>
+        <p>We want you to be satisfied with your purchase. If you encounter technical issues that prevent the Application from functioning as intended, or if you change your mind, we offer a <strong>14-day refund period</strong>.</p>
 
-  <p>
-    <strong>How to Request a Refund:</strong><br>
-    Refund requests should be submitted by contacting us at <strong>sytex.comp@gmail.com</strong> or via Paddle's support interface. Please include your <strong>Order ID</strong> or the email address used for the purchase to expedite the process.
-  </p>
+        <h2>How to Request a Refund</h2>
+        <p>Refund requests should be submitted by contacting us at <a href="mailto:sytex.comp@gmail.com"><strong>sytex.comp@gmail.com</strong></a> or via Paddle's support interface. Please include your <strong>Order ID</strong> or the email address used for the purchase to expedite the process.</p>
 
-  <p>
-    <strong>Eligibility:</strong>
-  </p>
-  <ul>
-    <li>Refund requests must be submitted within <strong>14 days</strong> of the original transaction date.</li>
-    <li>For subscription renewals, please ensure the request is made promptly after the renewal charge.</li>
-    <li>Once a refund is processed, your access to the paid features of the Application will be immediately revoked.</li>
-  </ul>
+        <h2>Eligibility</h2>
+        <ul>
+            <li>Refund requests must be submitted within <strong>14 days</strong> of the original transaction date.</li>
+            <li>For subscription renewals, please ensure the request is made promptly after the renewal charge.</li>
+            <li>Once a refund is processed, your access to the paid features of the Application will be immediately revoked.</li>
+        </ul>
 
-  <p>
-    <strong>Processing:</strong><br>
-    Approved refunds are credited back to the original payment method used via Paddle. Please note that bank processing times may vary and are outside of our direct control.
-  </p>
+        <h2>Processing</h2>
+        <p>Approved refunds are credited back to the original payment method used via Paddle. Please note that bank processing times may vary and are outside of our direct control.</p>
 
-  <p>
-    For any additional questions regarding our billing practices, please reach out to <strong>sytex.comp@gmail.com</strong>.
-  </p>
+        <div class="footer-note">
+            <p>For any additional questions regarding our billing practices, please reach out to <a href="mailto:sytex.comp@gmail.com">sytex.comp@gmail.com</a></p>
+        </div>
+    </main>
 </body>
 </html>
