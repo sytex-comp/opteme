@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Opteme Checkout</title>
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+</head>
+<body>
+  <h1>Loading checkout...</h1>
+
+  <script>
+    Paddle.Initialize({
+      token: "test_xxx_or_live_xxx", // client-side token from Paddle dashboard
+      checkout: {
+        settings: {
+          displayMode: "overlay",
+          theme: "light",
+          locale: "en"
+        }
+      }
+    });
+
+    // No Paddle.Checkout.open() here.
+    // When URL has ?_ptxn=txn_..., Paddle opens checkout automatically.
+  </script>
+</body>
+</html>
