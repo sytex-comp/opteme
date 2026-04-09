@@ -1,37 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Checkout</title>
-  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
-  <style>
-    body { font-family: sans-serif; margin: 40px; }
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Opteme Checkout</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --text-primary: #f5f5f7;
+            --text-secondary: #8e8e93;
+            --accent-blue: #3b82f6;
+            --accent-blue-hover: #60a5fa;
+            --border-color: #1c1c1e;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo-section {
+            margin-bottom: 3rem;
+        }
+
+        .app-name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tagline {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 480px) {
+            .app-name {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Opteme Checkout</h1>
-  <p id="status">Preparing secure checkout...</p>
+    <main class="container">
+        <section class="logo-section">
+            <h1 class="app-name">Opteme Checkout</h1>
+            <p id="status" class="tagline">Preparing secure checkout...</p>
+        </section>
+    </main>
 
-  <script>
-    // Sandbox only:
-    // Paddle.Environment.set("sandbox");
+    <script>
+        // Sandbox only:
+        // Paddle.Environment.set("sandbox");
 
-    Paddle.Initialize({
-      token: "live_YOUR_CLIENT_SIDE_TOKEN",
-      checkout: {
-        settings: {
-          displayMode: "overlay",
-          theme: "light",
-          locale: "en"
-        }
-      }
-    });
+        Paddle.Initialize({
+            token: "live_YOUR_CLIENT_SIDE_TOKEN",
+            checkout: {
+                settings: {
+                    displayMode: "overlay",
+                    theme: "light",
+                    locale: "en"
+                }
+            }
+        });
 
-    const hasTxn = new URLSearchParams(window.location.search).has("_ptxn");
-    document.getElementById("status").textContent = hasTxn
-      ? "Opening checkout..."
-      : "No transaction found in URL.";
-  </script>
+        const hasTxn = new URLSearchParams(window.location.search).has("_ptxn");
+        document.getElementById("status").textContent = hasTxn
+            ? "Opening checkout..."
+            : "No transaction found in URL.";
+    </script>
 </body>
 </html>
