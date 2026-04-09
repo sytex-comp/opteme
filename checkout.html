@@ -5,13 +5,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Opteme Checkout</title>
   <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+  </style>
 </head>
 <body>
-  <h1>Loading checkout...</h1>
+  <h1>Opteme Checkout</h1>
+  <p id="status">Preparing secure checkout...</p>
 
   <script>
+    // Sandbox only:
+    // Paddle.Environment.set("sandbox");
+
     Paddle.Initialize({
-      token: "test_xxx_or_live_xxx", // client-side token from Paddle dashboard
+      token: "live_YOUR_CLIENT_SIDE_TOKEN",
       checkout: {
         settings: {
           displayMode: "overlay",
@@ -21,8 +28,10 @@
       }
     });
 
-    // No Paddle.Checkout.open() here.
-    // When URL has ?_ptxn=txn_..., Paddle opens checkout automatically.
+    const hasTxn = new URLSearchParams(window.location.search).has("_ptxn");
+    document.getElementById("status").textContent = hasTxn
+      ? "Opening checkout..."
+      : "No transaction found in URL.";
   </script>
 </body>
 </html>
