@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Checkout</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
-    
+
     <style>
         * {
             margin: 0;
@@ -20,12 +20,8 @@
 
         :root {
             --bg-primary: #0a0a0b;
-            --bg-secondary: #111113;
             --text-primary: #f5f5f7;
             --text-secondary: #8e8e93;
-            --accent-blue: #3b82f6;
-            --accent-blue-hover: #60a5fa;
-            --border-color: #1c1c1e;
         }
 
         body {
@@ -47,67 +43,83 @@
             text-align: center;
         }
 
-        .logo-section {
-            margin-bottom: 3rem;
-        }
-
         .app-name {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 0.75rem;
         }
 
         .tagline {
-            font-size: 1.125rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
             font-weight: 400;
-            max-width: 400px;
+            max-width: 520px;
             margin: 0 auto;
-        }
-
-        @media (max-width: 480px) {
-            .app-name {
-                font-size: 2.5rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
-            }
+            white-space: pre-line;
         }
     </style>
 </head>
 <body>
     <main class="container">
-        <section class="logo-section">
-            <h1 class="app-name">Checkout</h1>
-            <p id="status" class="tagline">Preparing secure checkout...</p>
-        </section>
+        <h1 class="app-name">Checkout</h1>
+        <p id="status" class="tagline">Preparing secure checkout...</p>
     </main>
 
     <script>
-        // Sandbox only:
-        // Paddle.Environment.set("sandbox");
+        // IMPORTANT: replace with your real Paddle live client-side token.
+        const PADDLE_CLIENT_TOKEN = "live_YOUR_CLIENT_SIDE_TOKEN";
 
-        Paddle.Initialize({
-            token: "live_YOUR_CLIENT_SIDE_TOKEN",
-            checkout: {
-                settings: {
-                    displayMode: "overlay",
-                    theme: "light",
-                    locale: "en"
+        function setStatus(message) {
+            document.getElementById("status").textContent = message;
+        }
+
+        function getTransactionId() {
+            const params = new URLSearchParams(window.location.search);
+            const keys = ["_ptxn", "ptxn", "transaction_id", "transaction"];
+            for (const key of keys) {
+                const value = params.get(key);
+                if (value && value.startsWith("txn_")) {
+                    return value;
                 }
             }
-        });
+            return null;
+        }
 
-        const hasTxn = new URLSearchParams(window.location.search).has("_ptxn");
-        document.getElementById("status").textContent = hasTxn
-            ? "Opening checkout..."
-            : "No transaction found in URL.";
+        async function openCheckout() {
+            const transactionId = getTransactionId();
+            if (!transactionId) {
+                setStatus("No transaction found in URL.\nExpected ?_ptxn=txn_...");
+                return;
+            }
+
+            if (!PADDLE_CLIENT_TOKEN || PADDLE_CLIENT_TOKEN.includes("YOUR_CLIENT_SIDE_TOKEN")) {
+                setStatus("Missing Paddle client token.\nSet PADDLE_CLIENT_TOKEN in checkout.html.");
+                return;
+            }
+
+            try {
+                Paddle.Initialize({
+                    token: PADDLE_CLIENT_TOKEN,
+                    checkout: {
+                        settings: {
+                            displayMode: "overlay",
+                            theme: "light",
+                            locale: "en"
+                        }
+                    }
+                });
+
+                setStatus("Opening checkout...");
+                Paddle.Checkout.open({ transactionId });
+            } catch (err) {
+                console.error(err);
+                // Fallback to direct transaction URL if JS init/open fails.
+                window.location.href = "https://checkout.paddle.com/transaction/" + encodeURIComponent(transactionId);
+            }
+        }
+
+        openCheckout();
     </script>
 </body>
 </html>
